@@ -24,7 +24,7 @@ interface AnyInterface {
 type AnyProps = Record<string, unknown> | AnyInterface;
 
 const axios = Axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL + '',
+  baseURL: '/api',
   timeout: 1000,
   headers: {
     'Content-Type': 'application/json',
