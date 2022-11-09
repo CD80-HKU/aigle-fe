@@ -147,7 +147,11 @@ const overviewPage: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div
+      css={css`
+        padding: 24px;
+      `}
+    >
       <PageHeader title="Model Training"></PageHeader>
       <ContainerSection>
         <TrainingSVGSection>

@@ -130,6 +130,7 @@ const globalStyles = css`
   div.ant-layout {
     height: 100vh;
     .ant-layout-content {
+      padding: 0 !important;
       overflow-y: auto;
       margin: 0;
       padding-top: 24px;
