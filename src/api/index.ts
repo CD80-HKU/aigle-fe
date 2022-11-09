@@ -29,3 +29,17 @@ export const useRQPreprocessData = (
     {},
     queryOption || {}
   );
+
+export const useRQXgboost = (
+  queryOption?: Omit<
+    UseQueryOptions<API.XgboostResponse, API.ErrorResp>,
+    'queryKey' | 'queryFn'
+  >
+) =>
+  useGet<{}, API.XgboostResponse>(
+    '/data/xgboost',
+    '/data/xgboost',
+    {},
+    {},
+    queryOption || {}
+  );
