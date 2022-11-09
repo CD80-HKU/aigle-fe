@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil';
 import { dashboardState } from '@/stores/dashboard';
 
 interface AreaChartVisualizationProps {
-  data?: API.Roc;
+  data?: API.Roc
 }
 
 const EDGE_DISTANCE = 14;

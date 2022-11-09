@@ -43,3 +43,17 @@ export const useRQXgboost = (
     {},
     queryOption || {}
   );
+
+export const useRQClf = (
+  queryOption?: Omit<
+    UseQueryOptions<API.ClfResponse, API.ErrorResp>,
+    'queryKey' | 'queryFn'
+  >
+) =>
+  useGet<{}, API.ClfResponse>(
+    '/data/clf',
+    '/data/clf',
+    {},
+    {},
+    queryOption || {}
+  );

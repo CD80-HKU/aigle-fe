@@ -47,6 +47,11 @@ declare namespace API {
   }
 
   export interface ClfResponseData {
-    ROC: Roc;
+    ROC: ClfRoc;
+  }
+
+  export interface ClfRoc {
+    horizontal: number[];
+    vertical: number[];
   }
 }

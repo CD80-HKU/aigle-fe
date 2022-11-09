@@ -12,6 +12,7 @@ import PieChartCustomStyle from './components/customStyleBoard/pieChartCustomSty
 import {
   AreaChartVisualization,
   BarChartVisualization,
+  PieChartVisualization,
 } from './components/visualization';
 import { useRecoilState } from 'recoil';
 import { dashboardState, SelectedGraphType } from '@/stores/dashboard';
@@ -82,6 +83,13 @@ const Graph: React.FC<GraphProps> = (props: GraphProps) => {
     handler: (event: React.MouseEvent | React.TouchEvent) => void;
   };
 
+  const setGraphActiveKey = (activeKey: SelectedGraphType) => {
+    setDbStore(prev => ({
+      ...prev,
+      selectedGraphType: activeKey,
+    }));
+  };
+
   return (
     <>
       <Container>
@@ -95,12 +103,7 @@ const Graph: React.FC<GraphProps> = (props: GraphProps) => {
               <AnalyzerContent>
                 {model === 'Xgboost' && (
                   <Tabs
-                    onChange={(activeKey: SelectedGraphType) => {
-                      setDbStore(prev => ({
-                        ...prev,
-                        selectedGraphType: activeKey,
-                      }));
-                    }}
+                    onChange={setGraphActiveKey}
                     defaultActiveKey="ROC"
                     centered
                   >
@@ -125,11 +128,27 @@ const Graph: React.FC<GraphProps> = (props: GraphProps) => {
                   </Tabs>
                 )}
                 {model === 'Clf' && (
-                  <Tabs defaultActiveKey="ROC" centered>
-                    <TabPane tab="ROC" key="ROC">
+                  <Tabs
+                    onChange={setGraphActiveKey}
+                    defaultActiveKey="areaChart"
+                    centered
+                  >
+                    <TabPane
+                      tab="ROC"
+                      key="areaChart"
+                      style={{
+                        padding: 14,
+                      }}
+                    >
                       <AreaChartCustomStyle></AreaChartCustomStyle>
                     </TabPane>
-                    <TabPane tab="PieChart" key="pieChart">
+                    <TabPane
+                      tab="PieChart"
+                      key="pieChart"
+                      style={{
+                        padding: 14,
+                      }}
+                    >
                       <PieChartCustomStyle></PieChartCustomStyle>
                     </TabPane>
                   </Tabs>
@@ -166,7 +185,7 @@ const Graph: React.FC<GraphProps> = (props: GraphProps) => {
               {model === 'Xgboost' &&
                 dbStore.selectedGraphType === 'areaChart' && (
                   <AreaChartVisualization
-                    data={data?.ROC}
+                    data={(data as API.XgboostResponseData)?.ROC}
                   ></AreaChartVisualization>
                 )}
               {model === 'Xgboost' &&
@@ -175,6 +194,21 @@ const Graph: React.FC<GraphProps> = (props: GraphProps) => {
                     data={(data as API.XgboostResponseData)?.histogram}
                   ></BarChartVisualization>
                 )}
+              {model === 'Clf' && dbStore.selectedGraphType === 'areaChart' && (
+                <AreaChartVisualization
+                  data={
+                    {
+                      fpHorizontalAxis: (data as API.ClfResponseData)?.ROC
+                        ?.horizontal,
+                      tpVerticalAxis: (data as API.ClfResponseData)?.ROC
+                        ?.vertical,
+                    } as API.Roc
+                  }
+                ></AreaChartVisualization>
+              )}
+              {model === 'Clf' && dbStore.selectedGraphType === 'pieChart' && (
+                <PieChartVisualization></PieChartVisualization>
+              )}
             </VisualizationWrapper>
           </ViewSection>
         </ResizeWrapper>
