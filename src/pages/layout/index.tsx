@@ -18,10 +18,14 @@ import ErrorBoundary from '@/components/errorBoundary';
 
 const menuList = [
   {
-    path: '/overview',
-    name: 'Overview',
-    locale: 'menu.overview',
+    path: '/training',
+    name: 'Training',
     icon: 'heart',
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    icon: 'smile',
   },
 ];
 
@@ -42,7 +46,7 @@ const LayoutPage: FC = ({ children }) => {
 
   useEffect(() => {
     if (location.pathname === '/') {
-      navigate('/overview');
+      navigate('/training');
     }
   }, [navigate, location]);
 

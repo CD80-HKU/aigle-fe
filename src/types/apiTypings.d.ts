@@ -11,15 +11,13 @@ declare namespace API {
 
   export type ErrorResp = AxiosError<ErrorData>;
 
-  export interface ListResponse {
-    data: DataSourceItem[];
-    baseResp: BaseResp | undefined;
+  export interface StartLoadDataResponse {
+    data: string;
+    baseResponse: BaseResp | undefined;
   }
 
-  export interface DataSourceItem {
-    dataSourceName: string;
-    dataSourceType: string;
+  export interface PreProcessDataResponse {
+    data: string;
+    baseResponse: BaseResp | undefined;
   }
-
-  export interface DataSource {}
 }

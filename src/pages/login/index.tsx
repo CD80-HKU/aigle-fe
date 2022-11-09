@@ -42,7 +42,7 @@ const LoginForm: FC = () => {
   const onFinished = async (form: LoginParams) => {
     localStorage.setItem('token', '123abcdefg');
 
-    const from = location.state?.from || { pathname: '/overview' };
+    const from = location.state?.from || { pathname: '/training' };
     navigate(from);
   };
 

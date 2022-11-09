@@ -25,7 +25,7 @@ type AnyProps = Record<string, unknown> | AnyInterface;
 
 const axios = Axios.create({
   baseURL: '/api',
-  timeout: 1000,
+  timeout: 1000 * 60 * 10, // 10 minutes
   headers: {
     'Content-Type': 'application/json',
   },

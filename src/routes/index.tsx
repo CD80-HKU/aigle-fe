@@ -5,6 +5,7 @@ import LoginPage from '@/pages/login';
 import LayoutPage from '@/pages/layout';
 import WrapperRouteComponent from './config';
 import { useRoutes, RouteObject } from 'react-router-dom';
+import Dashboard from '@pages/dashboard';
 
 const NotFound = lazy(() => import('@/pages/404'));
 
@@ -18,10 +19,18 @@ const routeList: RouteObject[] = [
     ),
     children: [
       {
-        path: '/overview',
+        path: '/training',
         element: (
           <WrapperRouteComponent>
             <Overview />
+          </WrapperRouteComponent>
+        ),
+      },
+      {
+        path: '/dashboard',
+        element: (
+          <WrapperRouteComponent>
+            <Dashboard />
           </WrapperRouteComponent>
         ),
       },
